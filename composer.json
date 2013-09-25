@@ -1,0 +1,32 @@
+{
+    "name": "markup/barcode-bundle",
+    "description": "Barcode generation bundle wrapping Zend barcode component.",
+    "keywords": ["barcode"],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Douglas Greenshields",
+            "email": "douglas@usemarkup.com"
+        },
+        {
+            "name": "Markup",
+            "homepage": "http://www.usemarkup.com/"
+        }
+    ],
+    "require": {
+        "symfony/framework-bundle": "~2.1",
+        "zendframework/zend-barcode": "~2.0",
+        "zendframework/zend-servicemanager": "~2.0",
+        "zendframework/zend-validator": "~2.0"
+    },
+    "autoload": {
+        "psr-0": { "Markup\\BarcodeBundle": "" }
+    },
+    "target-dir": "Markup/BarcodeBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
