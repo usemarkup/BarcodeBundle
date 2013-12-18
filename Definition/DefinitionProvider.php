@@ -10,7 +10,7 @@ class DefinitionProvider
     /**
      * @var DefinitionInterface[]
      **/
-    private $definitions = [];
+    private $definitions = array();
 
     /**
      * Fetches a definition for the given name. Returns null if the definition does not exist.
