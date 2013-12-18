@@ -1,5 +1,7 @@
 # MarkupBarcodeBundle
 
+[![Build Status](https://api.travis-ci.org/usemarkup/BarcodeBundle.png?branch=master)](http://travis-ci.org/usemarkup/BarcodeBundle)
+
 ## About
 
 This Symfony2 bundle provides a means of generating barcodes using the [Zend barcode component](http://framework.zend.com/manual/2.2/en/modules/zend.barcode.intro.html) and printing them inline using a data URI.  It avoids problems with parts of the Zend component that retain state and so allows isolated barcode generation in the same execution cycle.
