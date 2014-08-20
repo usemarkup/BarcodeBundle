@@ -3,6 +3,8 @@
 namespace Markup\BarcodeBundle\Factory;
 
 use Imagine\Gd\Image as GdImage;
+use Imagine\Image\Metadata\MetadataBag;
+use Imagine\Image\Palette\RGB;
 use Zend\Barcode\Barcode as Barcode;
 use Zend\Barcode\Renderer\Image as ImageRenderer;
 
@@ -40,6 +42,6 @@ class Factory
         }
         $renderer->setBarcode($barcodeObject);
 
-        return new GdImage($renderer->draw());
+        return new GdImage($renderer->draw(), new RGB(), new MetadataBag());
     }
 }
