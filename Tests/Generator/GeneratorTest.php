@@ -2,7 +2,12 @@
 
 namespace Markup\BarcodeBundle\Tests\Generator;
 
+use Imagine\Image\ImageInterface;
+use Markup\BarcodeBundle\Definition\DefinitionInterface;
+use Markup\BarcodeBundle\Factory\Factory;
+use Markup\BarcodeBundle\Generator\Base64Encoder;
 use Markup\BarcodeBundle\Generator\Generator;
+use Markup\BarcodeBundle\Generator\GeneratorInterface;
 
 /**
 * A test for a barcode generator that uses a definition.
@@ -11,24 +16,20 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $this->definition = $this->getMock('Markup\BarcodeBundle\Definition\DefinitionInterface');
-        $this->barcodeFactory = $this->getMockBuilder('Markup\BarcodeBundle\Factory\Factory')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $this->base64encoder = $this->getMockBuilder('Markup\BarcodeBundle\Generator\Base64Encoder')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->definition = $this->createMock(DefinitionInterface::class);
+        $this->barcodeFactory = $this->createMock(Factory::class);
+        $this->base64encoder = $this->createMock(Base64Encoder::class);
         $this->generator = new Generator($this->definition, $this->barcodeFactory, $this->base64encoder);
     }
 
     public function testIsGenerator()
     {
-        $this->assertInstanceOf('Markup\BarcodeBundle\Generator\GeneratorInterface', $this->generator);
+        $this->assertInstanceOf(GeneratorInterface::class, $this->generator);
     }
 
     public function testGenerateImage()
     {
-        if (!interface_exists('Imagine\Image\ImageInterface')) {
+        if (!interface_exists(ImageInterface::class)) {
             $this->markTestSkipped('The Imagine library needs to be included for this test to execute.');
         }
         $text = 'Hello world!';
@@ -41,7 +42,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
             ->expects($this->any())
             ->method('getBarcodeOptions')
             ->will($this->returnValue(array()));
-        $image = $this->getMock('Imagine\Image\ImageInterface');
+        $image = $this->createMock(ImageInterface::class);
         $this->barcodeFactory
             ->expects($this->once())
             ->method('create')
@@ -76,7 +77,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
             ->expects($this->any())
             ->method('getImageOptions')
             ->will($this->returnValue($imageOptions));
-        $image = $this->getMock('Imagine\Image\ImageInterface');
+        $image = $this->createMock(ImageInterface::class);
         $this->barcodeFactory
             ->expects($this->any())
             ->method('create')
@@ -120,7 +121,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
             ->expects($this->any())
             ->method('getImageOptions')
             ->will($this->returnValue($imageOptions));
-        $image = $this->getMock('Imagine\Image\ImageInterface');
+        $image = $this->createMock(ImageInterface::class);
         $this->barcodeFactory
             ->expects($this->any())
             ->method('create')

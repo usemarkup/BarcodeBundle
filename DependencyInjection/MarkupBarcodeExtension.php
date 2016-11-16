@@ -6,6 +6,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
@@ -28,13 +29,12 @@ class MarkupBarcodeExtension extends Extension
         if (!empty($config['definitions'])) {
             $container->setParameter('markup_barcode.definition.configuration', $config['definitions']);
             foreach ($config['definitions'] as $name => $params) {
-                $generator = new Definition('%markup_barcode.generator.class%', array($name));
-                $generator->setFactoryService('markup_barcode.generator.provider');
-                $generator->setFactoryMethod('getNamedGenerator');
+                $generator = new Definition('%markup_barcode.generator.class%', [$name]);
+                $generator->setFactory([new Reference('markup_barcode.generator.provider'), 'getNamedGenerator']);
                 $container->setDefinition(sprintf('markup_barcode.generator.%s', $name), $generator);
             }
         } else {
-            $container->setParameter('markup_barcode.definition.configuration', array());
+            $container->setParameter('markup_barcode.definition.configuration', []);
         }
 
         $loader->load('services.xml');

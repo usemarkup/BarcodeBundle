@@ -3,6 +3,7 @@
 namespace Markup\BarcodeBundle\Generator;
 
 use Markup\BarcodeBundle\Definition\Definition;
+use Markup\BarcodeBundle\Definition\DefinitionInterface;
 use Markup\BarcodeBundle\Definition\DefinitionProvider;
 use Markup\BarcodeBundle\Factory\Factory;
 
@@ -55,7 +56,7 @@ class Provider
      * Gets the named definition object.
      *
      * @param  string              $name
-     * @return DefinitionInterface
+     * @return GeneratorInterface
      **/
     public function getNamedGenerator($name)
     {
@@ -80,6 +81,12 @@ class Provider
         }
         $config = $this->configuration[$name];
 
-        return new Definition($name, $config['type'], $config['format'], isset($config['image_options']) ? $config['image_options'] : array(), isset($config['barcode_options']) ? $config['barcode_options'] : array());
+        return new Definition(
+            $name,
+            $config['type'],
+            $config['format'],
+            isset($config['image_options']) ? $config['image_options'] : [],
+            isset($config['barcode_options']) ? $config['barcode_options'] : []
+        );
     }
 }

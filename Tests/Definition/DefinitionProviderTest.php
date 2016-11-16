@@ -2,6 +2,7 @@
 
 namespace Markup\BarcodeBundle\Tests\Definition;
 
+use Markup\BarcodeBundle\Definition\DefinitionInterface;
 use Markup\BarcodeBundle\Definition\DefinitionProvider;
 
 /**
@@ -23,7 +24,7 @@ class DefinitionProviderTest extends \PHPUnit_Framework_TestCase
     {
         $exists = 'does_exist';
         $noExists = 'does_not_exist';
-        $definition = $this->getMock('Markup\BarcodeBundle\Definition\DefinitionInterface');
+        $definition = $this->createMock(DefinitionInterface::class);
         $this->provider->setDefinition($exists, $definition);
         $this->assertSame($definition, $this->provider->fetchDefinition($exists));
         $this->assertNull($this->provider->fetchDefinition($noExists));
