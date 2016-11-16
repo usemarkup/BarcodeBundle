@@ -18,8 +18,6 @@ class AddGeneratorDefinitionsPass implements CompilerPassInterface
             return;
         }
 
-        $definitions = $container->getParameter('markup_barcode.definition.configuration');
-
         $definitionProvider = $container->getDefinition('markup_barcode.definition_provider');
 
         foreach ($container->findTaggedServiceIds('markup_barcode.definition') as $id => $tags) {

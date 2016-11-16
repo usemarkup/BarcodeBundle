@@ -11,9 +11,7 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $this->generatorProvider = $this->getMockBuilder('Markup\BarcodeBundle\Generator\Provider')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->generatorProvider = $this->createMock('Markup\BarcodeBundle\Generator\Provider');
         $this->extension = new Extension($this->generatorProvider);
     }
 
@@ -27,7 +25,7 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
         $barcodeDataUri = 'i am a data uri';
         $text = 'barcooooode';
         $generatorName = 'default';
-        $generator = $this->getMock('Markup\BarcodeBundle\Generator\GeneratorInterface');
+        $generator = $this->createMock('Markup\BarcodeBundle\Generator\GeneratorInterface');
         $generator
             ->expects($this->any())
             ->method('generateBarcodeDataUriForText')
