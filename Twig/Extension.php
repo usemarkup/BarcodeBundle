@@ -45,4 +45,12 @@ class Extension extends \Twig_Extension
 
         return $generator->generateBarcodeDataUriForText(strval($text));
     }
+
+    /**
+     * {@inheritdoc}
+     **/
+    public function getName()
+    {
+        return 'markup_barcode';
+    }
 }
