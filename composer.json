@@ -24,7 +24,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "~5.5",
-        "twig/twig": "~1.12"
+        "twig/twig": "~1.28|~2.0"
     },
     "autoload": {
         "psr-0": { "Markup\\BarcodeBundle": "" }
