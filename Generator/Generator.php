@@ -48,7 +48,11 @@ class Generator implements GeneratorInterface
      **/
     public function generateBarcodeImageForText($text)
     {
-        return $this->barcodeFactory->create($this->definition->getType(), array_merge($this->definition->getBarcodeOptions(), array('text' => $text)));
+        return $this->barcodeFactory->create(
+            $this->definition->getType(),
+            array_merge($this->definition->getBarcodeOptions(),
+            ['text' => $text]
+        ));
     }
 
     /**
@@ -85,14 +89,14 @@ class Generator implements GeneratorInterface
      **/
     private function getMimeTypeForImageFormat($imageFormat)
     {
-        $formatMap = array(
+        $formatMap = [
             'jpg'           => 'image/jpeg',
             'jpeg'          => 'image/jpeg',
             'gif'           => 'image/gif',
             'png'           => 'image/png',
             'wbmp'          => 'image/vnd.wap.wbmp',
             'xbm'           => 'image/x-xbitmap',
-        );
+        ];
         if (!isset($formatMap[$imageFormat])) {
             return null;
         }

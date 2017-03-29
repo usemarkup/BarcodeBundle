@@ -24,8 +24,8 @@ class Factory
      **/
     public function create(
         $barcode,
-        $barcodeConfig = array(),
-        $rendererConfig = array(),
+        $barcodeConfig = [],
+        $rendererConfig = [],
         $automaticRenderError = true
     ) {
         $renderer = new ImageRenderer($rendererConfig);

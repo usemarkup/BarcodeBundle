@@ -41,12 +41,12 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         $this->definition
             ->expects($this->any())
             ->method('getBarcodeOptions')
-            ->will($this->returnValue(array()));
+            ->will($this->returnValue([]));
         $image = $this->createMock(ImageInterface::class);
         $this->barcodeFactory
             ->expects($this->once())
             ->method('create')
-            ->with($this->equalTo($type), $this->equalTo(array('text' => $text)))
+            ->with($this->equalTo($type), $this->equalTo(['text' => $text]))
             ->will($this->returnValue($image));
         $this->assertSame($image, $this->generator->generateBarcodeImageForText($text));
     }
@@ -60,7 +60,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         $type = 'code128';
         $imageFormat = 'jpg';
         $imageMimeType = 'image/jpeg';
-        $imageOptions = array('quality' => 80);
+        $imageOptions = ['quality' => 80];
         $this->definition
             ->expects($this->any())
             ->method('getType')
@@ -68,7 +68,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         $this->definition
             ->expects($this->any())
             ->method('getBarcodeOptions')
-            ->will($this->returnValue(array()));
+            ->will($this->returnValue([]));
         $this->definition
             ->expects($this->any())
             ->method('getImageFormat')
@@ -81,7 +81,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         $this->barcodeFactory
             ->expects($this->any())
             ->method('create')
-            ->with($this->equalTo($type), $this->equalTo(array('text' => $text)))
+            ->with($this->equalTo($type), $this->equalTo(['text' => $text]))
             ->will($this->returnValue($image));
         $imageContent = 'i am the image';
         $image
@@ -104,7 +104,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         $type = 'code128';
         $imageFormat = 'jpg';
         $imageMimeType = 'image/jpeg';
-        $imageOptions = array('quality' => 80);
+        $imageOptions = ['quality' => 80];
         $this->definition
             ->expects($this->any())
             ->method('getType')
@@ -112,7 +112,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         $this->definition
             ->expects($this->any())
             ->method('getBarcodeOptions')
-            ->will($this->returnValue(array()));
+            ->will($this->returnValue([]));
         $this->definition
             ->expects($this->any())
             ->method('getImageFormat')
@@ -125,7 +125,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
         $this->barcodeFactory
             ->expects($this->any())
             ->method('create')
-            ->with($this->equalTo($type), $this->equalTo(array('text' => $text)))
+            ->with($this->equalTo($type), $this->equalTo(['text' => $text]))
             ->will($this->returnValue($image));
         $imageContent = 'i am the image';
         $image

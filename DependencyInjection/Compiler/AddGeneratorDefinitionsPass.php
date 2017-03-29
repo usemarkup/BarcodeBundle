@@ -25,7 +25,7 @@ class AddGeneratorDefinitionsPass implements CompilerPassInterface
                 if (!isset($attributes['alias'])) {
                     throw new InvalidArgumentException('A service tagged "markup_barcode.definition" must also declare an alias to use.');
                 }
-                $definitionProvider->addMethodCall('setDefinition', array($attributes['alias'], new Reference($id)));
+                $definitionProvider->addMethodCall('setDefinition', [$attributes['alias'], new Reference($id)]);
                 $container->setAlias(sprintf('markup_barcode.generator.%s', $attributes['alias']), $id);
             }
         }

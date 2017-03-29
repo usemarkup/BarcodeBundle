@@ -39,7 +39,7 @@ class Definition implements DefinitionInterface
      * @param array  $imageOptions
      * @param array  $barcodeOptions
      **/
-    public function __construct($name, $type, $imageFormat, array $imageOptions = array(), array $barcodeOptions = array())
+    public function __construct($name, $type, $imageFormat, array $imageOptions = [], array $barcodeOptions = [])
     {
         $this->name = $name;
         $this->type = $type;

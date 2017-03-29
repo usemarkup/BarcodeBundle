@@ -23,10 +23,10 @@ Add MarkupBarcodeBundle to your AppKernel.php:
 ```php
     public function registerBundles()
     {
-        $bundles = array(
+        $bundles = [
             ...
             new Markup\BarcodeBundle\MarkupBarcodeBundle(),
-        );
+        ];
         ...
     }
 ```

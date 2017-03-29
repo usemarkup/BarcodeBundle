@@ -27,9 +27,9 @@ class Extension extends \Twig_Extension
      **/
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('markup_barcode_data_uri', array($this, 'getBarcodeDataUri'), array('is_safe' => array('all'))),
-        );
+        return [
+            new \Twig_SimpleFilter('markup_barcode_data_uri', [$this, 'getBarcodeDataUri'], ['is_safe' => ['all']]),
+        ];
     }
 
     /**
