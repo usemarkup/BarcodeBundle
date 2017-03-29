@@ -3,9 +3,11 @@
 namespace Markup\BarcodeBundle\Factory;
 
 use Imagine\Gd\Image as GdImage;
+use Imagine\Image\ImageInterface;
 use Imagine\Image\Metadata\MetadataBag;
 use Imagine\Image\Palette\RGB;
 use Zend\Barcode\Barcode as Barcode;
+use Zend\Barcode\ObjectPluginManager;
 use Zend\Barcode\Renderer\Image as ImageRenderer;
 
 /**
@@ -20,7 +22,7 @@ class Factory
      * @param  mixed    $barcodeConfig        An array or Traversable object with barcode parameters.
      * @param  mixed    $rendererConfig       An array or Traversable object with renderer parameters.
      * @param  boolean  $automaticRenderError Set the automatic rendering of exception
-     * @return resource
+     * @return ImageInterface
      **/
     public function create(
         $barcode,
@@ -31,17 +33,32 @@ class Factory
         $renderer = new ImageRenderer($rendererConfig);
         //make sure Zend object plugin manager does not share created barcode object
         $objectPluginManager = Barcode::getObjectPluginManager();
-        $originallySharedByDefault = $objectPluginManager->shareByDefault();
-        if ($originallySharedByDefault) {
-            $objectPluginManager->setShareByDefault(false);
+        $shouldSupportZf2 = $this->isZf2ServiceManager($objectPluginManager);
+        if ($shouldSupportZf2) {
+            $originallySharedByDefault = $objectPluginManager->shareByDefault();
+            if ($originallySharedByDefault) {
+                $objectPluginManager->setShareByDefault(false);
+            }
+        } else {
+            $objectPluginManager->configure(['shared_by_default' => false]);
         }
+
         $barcodeObject = $objectPluginManager->get($barcode, $barcodeConfig);
-        if ($originallySharedByDefault) {
-            //reset object plugin manager
-            $objectPluginManager->setShareByDefault(true);
+
+        if ($shouldSupportZf2) {
+            if ($originallySharedByDefault) {
+                //reset object plugin manager
+                $objectPluginManager->setShareByDefault(true);
+            }
         }
+
         $renderer->setBarcode($barcodeObject);
 
         return new GdImage($renderer->draw(), new RGB(), new MetadataBag());
+    }
+
+    private function isZf2ServiceManager(ObjectPluginManager $manager)
+    {
+        return method_exists($manager, 'shareByDefault');
     }
 }
