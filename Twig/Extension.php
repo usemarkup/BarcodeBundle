@@ -3,11 +3,13 @@
 namespace Markup\BarcodeBundle\Twig;
 
 use Markup\BarcodeBundle\Generator\Provider as GeneratorProvider;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
 /**
 * A Twig extension for barcode rendering.
 */
-class Extension extends \Twig_Extension
+class Extension extends AbstractExtension
 {
     /**
      * @var GeneratorProvider
@@ -28,7 +30,7 @@ class Extension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('markup_barcode_data_uri', [$this, 'getBarcodeDataUri'], ['is_safe' => ['all']]),
+            new TwigFilter('markup_barcode_data_uri', [$this, 'getBarcodeDataUri'], ['is_safe' => ['all']]),
         ];
     }
 
