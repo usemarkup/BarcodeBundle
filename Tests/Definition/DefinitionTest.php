@@ -4,11 +4,12 @@ namespace Markup\BarcodeBundle\Tests\Definition;
 
 use Markup\BarcodeBundle\Definition\Definition;
 use Markup\BarcodeBundle\Definition\DefinitionInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
 * A test for a barcode definition
 */
-class DefinitionTest extends \PHPUnit_Framework_TestCase
+class DefinitionTest extends TestCase
 {
     public function setUp()
     {
