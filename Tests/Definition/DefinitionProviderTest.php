@@ -4,11 +4,12 @@ namespace Markup\BarcodeBundle\Tests\Definition;
 
 use Markup\BarcodeBundle\Definition\DefinitionInterface;
 use Markup\BarcodeBundle\Definition\DefinitionProvider;
+use PHPUnit\Framework\TestCase;
 
 /**
 * Test for a provider of definitions.
 */
-class DefinitionProviderTest extends \PHPUnit_Framework_TestCase
+class DefinitionProviderTest extends TestCase
 {
     protected function setUp()
     {

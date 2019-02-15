@@ -8,11 +8,12 @@ use Markup\BarcodeBundle\Factory\Factory;
 use Markup\BarcodeBundle\Generator\Base64Encoder;
 use Markup\BarcodeBundle\Generator\Generator;
 use Markup\BarcodeBundle\Generator\GeneratorInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
 * A test for a barcode generator that uses a definition.
 */
-class GeneratorTest extends \PHPUnit_Framework_TestCase
+class GeneratorTest extends TestCase
 {
     public function setUp()
     {
