@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Markup\BarcodeBundle\Manger;
+namespace Markup\BarcodeBundle\Manager;
 
 interface SharedAccessInterface
 {
