@@ -15,14 +15,17 @@
         }
     ],
     "require": {
-        "symfony/framework-bundle": "~2.7|~3.0|~4.0",
+        "php": ">=7.1",
+        "symfony/framework-bundle": "^3.4|^4",
         "zendframework/zend-barcode": "~2.0|~3.0",
         "imagine/imagine": "~0.6.0",
-        "php": ">=7.1"
+        "symfony/config": "^3.4|^4"
+
     },
     "require-dev": {
         "phpunit/phpunit": "^7",
-        "twig/twig": "~1.28|~2.0"
+        "twig/twig": "~1.34|~2.4",
+        "phpstan/phpstan-shim": "^0.11"
     },
     "autoload": {
         "psr-0": { "Markup\\BarcodeBundle": "" }
