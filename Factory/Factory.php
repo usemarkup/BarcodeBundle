@@ -6,9 +6,10 @@ use Imagine\Gd\Image as GdImage;
 use Imagine\Image\ImageInterface;
 use Imagine\Image\Metadata\MetadataBag;
 use Imagine\Image\Palette\RGB;
-use Zend\Barcode\Barcode as Barcode;
-use Zend\Barcode\ObjectPluginManager;
-use Zend\Barcode\Renderer\Image as ImageRenderer;
+use Markup\BarcodeBundle\Manager\SharedAccessInterface;
+use Laminas\Barcode\Barcode as Barcode;
+use Laminas\Barcode\ObjectPluginManager;
+use Laminas\Barcode\Renderer\Image as ImageRenderer;
 
 /**
 * A wrapper for Zend\Barcode\Barcode::factory() plus draw().
@@ -30,8 +31,10 @@ class Factory
         $rendererConfig = [],
         $automaticRenderError = true
     ) {
+        $originallySharedByDefault = false;
         $renderer = new ImageRenderer($rendererConfig);
         //make sure Zend object plugin manager does not share created barcode object
+        /** @var ObjectPluginManager|SharedAccessInterface $objectPluginManager */
         $objectPluginManager = Barcode::getObjectPluginManager();
         $shouldSupportZf2 = $this->isZf2ServiceManager($objectPluginManager);
         if ($shouldSupportZf2) {

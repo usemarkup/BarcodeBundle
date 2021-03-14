@@ -2,12 +2,14 @@
 
 namespace Markup\BarcodeBundle\Tests\Twig;
 
+use Markup\BarcodeBundle\Generator\GeneratorInterface;
 use Markup\BarcodeBundle\Twig\Extension;
+use PHPUnit\Framework\TestCase;
 
 /**
 * Test for a Twig extension for barcode rendering
 */
-class ExtensionTest extends \PHPUnit_Framework_TestCase
+class ExtensionTest extends TestCase
 {
     public function setUp()
     {
@@ -25,7 +27,7 @@ class ExtensionTest extends \PHPUnit_Framework_TestCase
         $barcodeDataUri = 'i am a data uri';
         $text = 'barcooooode';
         $generatorName = 'default';
-        $generator = $this->createMock('Markup\BarcodeBundle\Generator\GeneratorInterface');
+        $generator = $this->createMock(GeneratorInterface::class);
         $generator
             ->expects($this->any())
             ->method('generateBarcodeDataUriForText')

@@ -2,6 +2,8 @@
 
 namespace Markup\BarcodeBundle\Generator;
 
+use Imagine\Image\ImageInterface;
+
 /**
  * Interface for a barcode generator.
  **/
@@ -11,7 +13,7 @@ interface GeneratorInterface
      * Generates and returns an image.
      *
      * @param  string                       $text
-     * @return Imagine\Image\ImageInterface
+     * @return ImageInterface
      **/
     public function generateBarcodeImageForText($text);
 

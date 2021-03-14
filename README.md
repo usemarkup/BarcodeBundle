@@ -4,7 +4,7 @@
 
 ## About
 
-This Symfony2 bundle provides a means of generating barcodes using the [Zend barcode component](http://framework.zend.com/manual/2.2/en/modules/zend.barcode.intro.html) and printing them inline using a data URI.  It avoids problems with parts of the Zend component that retain state and so allows isolated barcode generation in the same execution cycle.
+This Symfony bundle provides a means of generating barcodes using the [Laminas barcode component](https://docs.laminas.dev/laminas-barcode/) and printing them inline using a data URI.  It avoids problems with parts of the Laminas component that retain state and so allows isolated barcode generation in the same execution cycle.
 
 ## Installation
 
